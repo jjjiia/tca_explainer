@@ -1,0 +1,53 @@
+html, body{
+    font-family:"Helvetica";
+    font-color:#222;
+}
+#title{
+    font-size:12px;
+    border:2px solid #79b0a5;
+    color:#79b0a5;
+}
+#chart{
+    border:2px solid #7dde49;
+    color:#7dde49;
+}
+#timeline{
+    border:2px solid #69b95a;
+    color:#69b95a;
+}
+#map{
+    border:2px solid #59e7a5;
+    color:#59e7a5;
+}
+#calendar{
+    border:2px solid #46ac84;
+    color:#46ac84;
+}
+.section{
+    padding:20px;
+    margin:20px;  
+    border-radius:5px;
+}
+
+
+
+#sections {
+  position: relative;
+  width: 250px;
+  top: 0px;
+  z-index: 90;
+}
+
+.step {
+  margin-bottom: 200px;
+}
+
+#vis {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: #ddd;
+}

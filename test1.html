@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <meta charset="UTF-8">
+	  
+	<title>Sketch 1</title>
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="144.png" />
+	<script src="static/javascripts/d3.v4.min.js"></script>
+	<script src="static/javascripts/topojson.v1.min.js"></script>
+  
+	<script src="static/javascripts/jquery.min.js"></script>
+	<script src="static/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="static/javascripts/queue.v1.min.js"></script>
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="static/stylesheets/jquery-ui.css" />
+	<link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+	<link href="static/bootstrap-3.1.1-dist/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<script src="http://d3js.org/topojson.v0.min.js"></script>
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://cdn.rawgit.com/devTristan/pbf/master/dist/pbf.min.js"></script>
+<script src="https://rawgit.com/devTristan/vector-tile-js/master/dist/vectortile.min.js"></script>
+<script src="//d3js.org/d3-tile.v0.0.min.js"></script>
+<!--  <link rel="stylesheet" type="text/css" href="static/stylesheets/style.css"> </style>-->
+  <link rel="stylesheet" type="text/css" href="static/stylesheets/scroll.css"> </style>
+	
+  <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+
+
+</head>
+<body>
+<script>
+ // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ //
+ // ga('create', 'UA-47759411-3', 'auto');
+ // ga('send', 'pageview');
+
+</script>
+ <div id='graphic'>
+   <div id='sections' class=" col-md-3">
+     <section class="step">
+       <div class="title">Test 1</div>
+       From visited places to Census Atlas using 1 month of recorded locations.
+     </section>
+     <section class="step">
+       <div class="title">
+         Here are all the places(lat,lng) that I have been
+       </div>
+        in 1 month as recorded by my phone.
+     </section>
+     <section class="step">
+       <div class="title">
+         Those locations are translated into census geography.
+       </div>
+         Each time I move to a different census geography counts as 1 move.         
+    </section>
+     <section class="step">
+      <div class="title">calendar of moves</div>
+       Here is an overview of how many times I went to different geographies each day
+       over this time.
+     </section>
+     <section class="step">
+       <div class="title">each day ...</div>
+     Each day is a little bit different, but there is a pattern of activity
+     </section>
+     <section class="step">
+       <div class="title">Most frequented census geographies</div>
+       Here is a histogram of how much time in total I spent in each geography
+       as % of total time.
+       Less than 35 minutes total or 1 minute per day are eliminated.
+     </section>
+     <section class="step">
+       <div class="title">This is my home</div>
+     </section>
+     <section class="step">
+       <div class="title">These are my work</div>
+     </section>
+     <section class="step">
+       <div class="title">Surroundings</div>
+       Here is how my home compares to the surrounding areas
+     </section>
+     <section class="step">
+       <div class="title">Select a different criteria to compare.</div>
+     </section>
+     <section class="step">
+       <div class="title">All Places</div>
+       How does every place I have been to compare?
+     </section>
+     <section class="step">
+       <div class="title">All Surroundings</div>
+       Here are all the places I have been to compared to the surrounding areas.
+       (within 1 mile radius of each place or larger until population of surrounding area reaches ##)
+     </section>
+     <section class="step">
+       <div class="title">I am Missing</div>
+       Here are all the places I have never been to and what is important about each.
+     </section>
+     <section class="step">
+       <div class="title">Matching My Experience</div>
+       Select and deselect criteria to see map.
+       blue are exact matches, green are partial matches.
+     </section>
+     <section class="step">
+       <div class="title">Expanding My Experience</div>
+       Click to add places and recolor the map.
+     </section>
+     <section class="step">
+       <div class="title">Your Atlas</div>
+       Here is where you can upload your location data and see your own version of the census. link
+     </section>
+
+   </div>
+   <div id='vis' class = "col-md-12">
+   </div>
+ </div>
+      
+      
+      
+      
+      
+<!--    <div class="container-full">
+       <div class="row">
+         <div class="col-md-4 section" id="map">
+           Map
+         </div>
+         <div class="col-md-4 section" id="calendar">
+           
+           </div>
+        </div>
+      <div class="row">
+        <div class="col-md-4 section" id="timeline">
+          Timeline by Day
+          <br/>
+          </div>
+          <div class="col-md-4 section" id="histogram">
+            histogram
+            <br/>
+            </div>
+         <div class="col-md-4 section" id = "chart">
+           Charts
+         </div> 
+       </div>
+    </div>
+-->    
+<script>
+</script>
+<script src="js/charts.js"></script>	
+  
+<script src="js/viewport.js"></script>
+<script src="js/pubValues.js"></script>
+<script src="js/vis.js"></script>	
+<script src="js/loadFiles.js"></script>	
+<script src="js/setupSections.js"></script>	
+<script src="js/scroller.js"></script>	
+<script src="js/connectScroller.js"></script>	
+<script src="js/dataFormatting.js"></script>	
+<!--
+<script src="js/seDictionary.js"></script>	
+<script src="js/map.js"></script>	
+-->
+
+</body>
+</html>
