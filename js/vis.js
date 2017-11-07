@@ -38,6 +38,7 @@ function initialVis(){
         pub.map = map
         d3.selectAll(".mapboxgl-canvas").style("opacity",0)
       d3.selectAll(".mapboxgl-control-container").style("opacity",0) 
+  //  moveMap([-74.010544,40.70],11)
 //svg   
     var container = map.getCanvasContainer()
     var svg = d3.select(container).append("svg")
@@ -71,10 +72,31 @@ function initialVis(){
     
 //daily timeline
     dailyChanges(pub.formattedByDay,svg)
-    
-    
-}
 
+//histogram
+     gidHistogram(pub.gidByDuration,svg)    
+}
+function moveMap(center,scale){
+    pub.map.flyTo({
+            // These options control the ending camera position: centered at
+            // the target, at zoom level 9, and north up.
+            center: center,
+            zoom: scale,
+            bearing: 0,
+
+            // These options control the flight curve, making it move
+            // slowly and zoom out almost completely before starting
+            // to pan.
+            speed: 0.2, // make the flying slow
+            curve: 1, // change the speed at which it zooms out
+
+            // This can be any easing function: it takes a number between
+            // 0 and 1 and returns another number between 0 and 1.
+          //  easing: function (t) {
+          //      return t;
+          //  }
+        })
+}
 function mapboxProjection(lonlat) {
      var p = map.project(new mapboxgl.LngLat(lonlat[0], lonlat[1]))
      return [p.x, p.y];
@@ -120,7 +142,6 @@ function setProjection(){
    // pub.projection = projection
     console.log(projection.center())
 }
-
 function updatePoints(points,geoData,projection,map,svg){
     d3.selectAll(".points").data(geoData).attr("fill",colors[1])
     .attr("cx",function(d){
@@ -150,7 +171,7 @@ function drawMapBoxTile(){
         container: 'vis', // container id
         style: 'mapbox://styles/jjjiia123/cj9lqgjb01ukd2sqqn5e1zsqh',
         center: [-74.010544,40.70],
-        zoom:11, 
+        zoom:9, 
         //maxZoom:20,
     //    minZoom:18,
       //  interactive: false
@@ -158,7 +179,7 @@ function drawMapBoxTile(){
     map.scrollZoom.disable()
     map.keyboard.disable();
     map.addControl(new mapboxgl.Navigation());
-    
+    pub.map = map
     return map
 }
 function drawBaseMap(){

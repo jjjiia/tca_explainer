@@ -16,20 +16,15 @@ function dataDidLoad(error,places) {
     
     var gidByDuration = formatGidsByDuration(formattedGids)
     pub.gidByDuration = gidByDuration
-    var sortedIds = Object.keys(gidByDuration).sort(function(a,b){
-        return gidByDuration[b] - gidByDuration[a];
+    
+    gidByDuration.sort(function(a,b){
+        return b.duration - a.duration;
     });
     
+    pub.colorGids = colorGids()
    // initialVis(gidByDuration)
     setupGeoData(gidByDuration)
     display(places)
-    
-    
-//    gidHistogram(sortedIds,gidByDuration)
-//    basicCalendar(formattedDays)
-//    dailyChanges(formattedDays,formattedGids)
-//    console.log(seDictionary)
-//    console.log(data)
 }
 
 var pub = {

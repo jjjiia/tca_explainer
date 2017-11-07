@@ -40,9 +40,19 @@ function formatGidsByDuration(data){
         formatted.push({id:i,duration:td})
     }
     
-    var filtered = formatted.filter(function (d){return d.duration > .5*60*60; });
+    var filtered = formatted.filter(function (d){return d.duration > 0*60*60; });
     return filtered
 }
+
+function colorGids(){
+    var colorDictionary ={}
+    for(var i in pub.gidByDuration){
+        colorDictionary[pub.gidByDuration[i].id]=tractColors[i%(tractColors.length-1)]
+    }
+    console.log(colorDictionary)
+    return colorDictionary
+}
+
 function timeStampToWeekDay(day){
     
    // var day = timestamp.split("T")[0]
